@@ -111,7 +111,7 @@
 
   <!-- Orbiting Gallery Background -->
   <div id="orbit-gallery" class="absolute inset-0 w-full h-full flex items-center justify-center">
-    <div id="orbit-container" class="relative w-[22rem] h-[22rem] sm:w-[30rem] sm:h-[30rem] md:w-[40rem] md:h-[40rem] lg:w-[48rem] lg:h-[48rem]">
+    <div id="orbit-container" class="relative w-[90vw] h-[90vw] max-w-[22rem] max-h-[22rem] sm:w-[30rem] sm:h-[30rem] md:w-[40rem] md:h-[40rem] lg:w-[48rem] lg:h-[48rem]">
       <!-- 8 Image Placeholders -->
       <div class="orbit-item">
         <img src="https://picsum.photos/seed/sambal1/200" alt="Botol Sambal Cumi" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
@@ -239,7 +239,7 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start relative mt-10">
         <!-- Kolom Kiri (Galeri Foto) -->
-        <div class="lg:col-span-5 sticky top-24 flex flex-col gap-4">
+        <div class="lg:col-span-5 lg:sticky top-24 flex flex-col gap-4">
             <img id="main-product-img" src="https://placehold.co/600x600/115e59/ffffff?text=Foto+Utama" class="w-full aspect-square object-cover rounded-3xl shadow-lg border border-white/10">
             <div class="grid grid-cols-4 gap-3">
                 <img src="https://placehold.co/200x200/115e59/ffffff?text=Foto+1" alt="Tampilan produk 1" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
@@ -377,7 +377,7 @@
 <!-- =========================================================
      FOOTER
 ========================================================== -->
-<footer id="kontak" class="relative text-sand/50 text-center pt-20 pb-48 md:pb-20 px-6 z-10 font-light">
+<footer id="kontak" class="relative text-sand/50 text-center pt-20 pb-32 md:pb-20 px-6 z-10 font-light">
   <p class="font-magic text-sand/80 text-xl sm:text-2xl mb-2">Sambal Cumi Pangandaran</p>
   <p class="text-xs sm:text-sm">Diproduksi oleh UMKM Kampung Nelayan Pangandaran, Jawa Barat</p>
   <p class="text-xs mt-3">© 2026 — Dibuat dengan bangga di pesisir Indonesia</p>
@@ -386,7 +386,7 @@
 <!-- =========================================================
      FLOATING NAVIGATION (MOBILE ONLY)
 ========================================================== -->
-<div class="floating-nav-wrapper">
+<div class="floating-nav-wrapper md:hidden">
 
   <!-- 6. TAB NAVIGATION -->
   <nav class="tab-nav">

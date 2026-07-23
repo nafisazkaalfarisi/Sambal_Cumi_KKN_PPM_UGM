@@ -1,7 +1,21 @@
 html { scroll-behavior: smooth; }
 body { 
   /* The background color is now set on the body tag in index.html */
+  overflow-x: hidden;
 }
+
+/* =========================================================
+   RESPONSIVE & READABILITY FIXES
+========================================================== */
+/* Improve title readability over complex backgrounds */
+#hero h1,
+#hero .font-magic,
+.fade-in-section h2 {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
 
 /* =========================================================
    NEW: PARALLAX FLOATING ELEMENTS
