@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+<title>Sambal Cumi Pangandaran — Pedas, Gurih, Menggugah Selera</title>
+<meta name="description" content="Sambal Cumi khas Pangandaran, dibuat dari cumi segar dan bumbu rempah Nusantara. Pedas, gurih, dan menggugah selera." />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  // Konfigurasi Tailwind untuk font kustom
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy:   { DEFAULT: '#0F3D3E', dark: '#0A2B2C', light: '#155052' },
+          sand:   { DEFAULT: '#F3EDDD', dark: '#E8DCC4' },
+          rope:   '#C9A876',
+          coral:  '#E76F51',
+          ink:    '#16241F',
+        },
+        fontFamily: {
+          poppins: ['Poppins', 'sans-serif'],
+          kaftus: ['Kaftus', 'serif'],
+          magic: ['"FC Magic"', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Leaflet.js via CDN -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Swiper.js via CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+<!-- Custom CSS for Orbiting Gallery & Custom Fonts -->
+<style>
+  /* Deklarasi Font Kustom */
+  @font-face {
+    font-family: 'Kaftus';
+    src: url('./fonts/Kaftus.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'FC Magic';
+    src: url('./fonts/FCMagic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  :root {
+    --orbit-duration: 40s;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes counter-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+
+  #orbit-container {
+    animation: spin var(--orbit-duration) linear infinite;
+    will-change: transform;
+  }
+  .orbit-item {
+    position: absolute;
+    animation: counter-spin var(--orbit-duration) linear infinite;
+    will-change: transform;
+  }
+  #orbit-gallery:hover #orbit-container,
+  #orbit-gallery:hover .orbit-item {
+    animation-play-state: paused;
+  }
+</style>
+</head>
+
+<body class="font-poppins bg-gradient-to-b from-navy to-navy-dark text-sand antialiased">
+
+<!-- =========================================================
+     PARALLAX FLOATING ELEMENTS
+========================================================== -->
+<div id="parallax-background" aria-hidden="true">
+    <div class="parallax-element" style="--size: 40px; --speed: -1.5; --left: 10%; --delay: -5s">~</div>
+    <div class="parallax-element" style="--size: 60px; --speed: -2.5; --left: 80%; --delay: -12s">~</div>
+    <div class="parallax-element" style="--size: 20px; --speed: -0.5; --left: 45%; --delay: -2s">~</div>
+    <div class="parallax-element" style="--size: 30px; --speed: -1; --left: 25%; --delay: -8s">~</div>
+    <div class="parallax-element" style="--size: 50px; --speed: -2; --left: 90%; --delay: -1s">~</div>
+    <div class="parallax-element" style="--size: 25px; --speed: -1.2; --left: 60%; --delay: -15s">~</div>
+</div>
+
+
+<!-- =========================================================
+     1. HERO SECTION (REBUILT WITH ORBITING GALLERY)
+========================================================== -->
+<header id="hero" class="relative flex items-center justify-center min-h-screen overflow-hidden z-10">
+
+  <!-- Orbiting Gallery Background -->
+  <div id="orbit-gallery" class="absolute inset-0 w-full h-full flex items-center justify-center">
+    <div id="orbit-container" class="relative w-[22rem] h-[22rem] sm:w-[30rem] sm:h-[30rem] md:w-[40rem] md:h-[40rem] lg:w-[48rem] lg:h-[48rem]">
+      <!-- 8 Image Placeholders -->
+      <div class="orbit-item">
+        <img src="https://picsum.photos/seed/sambal1/200" alt="Botol Sambal Cumi" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+      </div>
+      <div class="orbit-item">
+        <img src="https://picsum.photos/seed/sambal2/200" alt="Sambal Cumi disajikan dengan nasi" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+      </div>
+      <div class="orbit-item">
+        <img src="https://picsum.photos/seed/sambal3/200" alt="Proses memasak sambal" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+      </div>
+      <div class="orbit-item">
+        <img src="https://picsum.photos/seed/sambal4/200" alt="Bahan baku cumi segar" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+      </div>
+      <div class="orbit-item">
+        <img src="https://picsum.photos/seed/sambal5/200" alt="Kemasan Sambal Cumi" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+      </div>
+      <div class="orbit-item">
+        <img src="https://picsum.photos/seed/sambal6/200" alt="Detail tekstur Sambal Cumi" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+      </div>
+      <div class="orbit-item">
+        <img src="https://picsum.photos/seed/sambal7/200" alt="Suasana pesisir Pangandaran" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+      </div>
+      <div class="orbit-item">
+        <img src="https://picsum.photos/seed/sambal8/200" alt="Bumbu rempah segar" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+      </div>
+    </div>
+  </div>
+
+  <!-- Centered Text Content -->
+  <div class="relative z-20 max-w-xl mx-auto px-6 text-center">
+    <h1 class="font-kaftus font-semibold text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-tight">
+      Sambal Cumi
+    </h1>
+    <p class="font-magic text-rope text-2xl sm:text-3xl mt-2">
+      “Pedas, Gurih, dan Menggugah Selera”
+    </p>
+    <p class="text-sand/80 text-base sm:text-lg mt-6 leading-relaxed max-w-md mx-auto font-light">
+      Paduan cumi segar pilihan dan terasi bakar, dimasak perlahan dengan rempah Nusantara oleh warga pesisir Pangandaran.
+    </p>
+  </div>
+</header>
+
+<!-- =========================================================
+     2. STORYTELLING SECTION
+========================================================== -->
+<section id="cerita" class="fade-in-section relative py-20 md:py-28 px-6 z-10">
+  <div class="max-w-xl lg:max-w-5xl mx-auto">
+    <div class="w-full flex justify-center py-10">
+        <div class="flex flex-col items-center justify-center px-12 py-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+            <p class="text-sm font-bold text-emerald-200/90 tracking-[0.3em] uppercase mb-2">Cerita</p>
+            <h2 class="font-kaftus font-semibold text-4xl text-white">
+                Kisah di Balik Rasa
+            </h2>
+        </div>
+    </div>
+
+    <!-- Story Map / Zig-Zag Timeline Container -->
+    <div class="mt-16 md:mt-20 space-y-16 md:space-y-24">
+
+        <!-- Blok 1: Awal Mula -->
+        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <div class="md:w-1/2 text-center md:text-left">
+                <p class="text-base sm:text-lg leading-loose text-sand/80 font-light">
+                    Setiap botol berawal dari fajar di pesisir Pangandaran. Nelayan lokal bersandar membawa tangkapan cumi segar terbaik dari laut.
+                </p>
+            </div>
+            <div class="md:w-1/2">
+                <img src="https://source.unsplash.com/random/800x600/?boat,sunrise,fishing" alt="Perahu nelayan saat fajar membawa tangkapan cumi" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-lg">
+            </div>
+        </div>
+
+        <!-- Blok 2: Bahan Baku -->
+        <div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
+            <div class="md:w-1/2 text-center md:text-left">
+                <p class="text-base sm:text-lg leading-loose text-sand/80 font-light">
+                    Cumi dibersihkan saksama, lalu dipertemukan dengan hasil bumi pilihan: cabai keriting merah, tomat segar, bawang, serai, lengkuas, dan terasi bakar khas pesisir.
+                </p>
+            </div>
+            <div class="md:w-1/2">
+                <img src="https://source.unsplash.com/random/800x600/?spices,chili,herbs" alt="Bumbu rempah segar untuk sambal" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-lg">
+            </div>
+        </div>
+
+        <!-- Blok 3: Proses Masak -->
+        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <div class="md:w-1/2 text-center md:text-left">
+                <p class="text-base sm:text-lg leading-loose text-sand/80 font-light">
+                    Bumbu ditumis hingga harum. Dimasak perlahan dengan kesabaran dan api kecil agar bumbu meresap sempurna ke dalam serat cumi dan mengeluarkan minyak alaminya.
+                </p>
+            </div>
+            <div class="md:w-1/2">
+                <img src="https://source.unsplash.com/random/800x600/?cooking,pan,sauce" alt="Proses memasak sambal di wajan" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-lg">
+            </div>
+        </div>
+
+        <!-- Blok 4: Hasil Akhir -->
+        <div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
+            <div class="md:w-1/2 text-center md:text-left">
+                <p class="text-base sm:text-lg leading-loose text-sand/80 font-light">
+                    Menciptakan cita rasa pedas gurih yang tak terlupakan, dikemas rapat untuk membawa sensasi hidangan laut langsung ke meja makan Anda.
+                </p>
+            </div>
+            <div class="md:w-1/2">
+                <img src="https://source.unsplash.com/random/800x600/?jar,sambal,product" alt="Sambal cumi dalam kemasan botol siap saji" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-lg">
+            </div>
+        </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     3. PRODUCT INFO SECTION (FEATURE SPLIT LAYOUT)
+========================================================== -->
+<section id="produk" class="fade-in-section relative py-20 md:py-28 px-6 z-10">
+  <div class="max-w-5xl mx-auto">
+    <div class="w-full flex justify-center py-10">
+        <div class="flex flex-col items-center justify-center px-12 py-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+            <p class="text-sm font-bold text-emerald-200/90 tracking-[0.3em] uppercase mb-2">Rincian Produk</p>
+            <h2 class="font-kaftus font-semibold text-4xl text-white">
+                Yang Perlu Anda Tahu
+            </h2>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start relative mt-10">
+        <!-- Kolom Kiri (Galeri Foto) -->
+        <div class="lg:col-span-5 sticky top-24 flex flex-col gap-4">
+            <img id="main-product-img" src="https://placehold.co/600x600/115e59/ffffff?text=Foto+Utama" class="w-full aspect-square object-cover rounded-3xl shadow-lg border border-white/10">
+            <div class="grid grid-cols-4 gap-3">
+                <img src="https://placehold.co/200x200/115e59/ffffff?text=Foto+1" alt="Tampilan produk 1" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
+                <img src="https://placehold.co/200x200/0f3d3e/ffffff?text=Foto+2" alt="Tampilan produk 2" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
+                <img src="https://placehold.co/200x200/c9a876/000000?text=Foto+3" alt="Tampilan produk 3" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
+                <img src="https://placehold.co/200x200/e76f51/ffffff?text=Foto+4" alt="Tampilan produk 4" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
+            </div>
+        </div>
+
+        <!-- Kolom Kanan (Card Spesifikasi) -->
+        <div class="lg:col-span-7 flex flex-col gap-6">
+            <!-- Card 1: Komposisi Bahan (Table) -->
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-900/50">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-coral/15 flex items-center justify-center shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-coral"><path d="M4 13a8 8 0 1016 0M4 13a8 8 0 118 8M4 13c0-4.4 3.6-8 8-8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+                    <h3 class="font-kaftus font-semibold text-xl sm:text-2xl text-sand">Komposisi Bahan</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-sand/80">
+                        <thead class="border-b border-sand/20 text-sand">
+                            <tr>
+                                <th scope="col" class="pb-3 font-semibold">Bahan</th>
+                                <th scope="col" class="pb-3 font-semibold text-right">Takaran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-sand/10">
+                                <td class="py-3">Cumi Segar</td>
+                                <td class="py-3 text-right">45 gr</td>
+                            </tr>
+                            <tr class="border-b border-sand/10">
+                                <td class="py-3">Cabai Merah</td>
+                                <td class="py-3 text-right">50 gr</td>
+                            </tr>
+                            <tr class="border-b border-sand/10">
+                                <td class="py-3">Minyak Goreng</td>
+                                <td class="py-3 text-right">40 ml</td>
+                            </tr>
+                            <tr class="border-b border-sand/10">
+                                <td class="py-3">Bawang Merah</td>
+                                <td class="py-3 text-right">20 gr</td>
+                            </tr>
+                            <tr class="border-b border-sand/10">
+                                <td class="py-3">Tomat</td>
+                                <td class="py-3 text-right">15 gr</td>
+                            </tr>
+                            <tr class="border-b border-sand/10">
+                                <td class="py-3">Bawang Putih</td>
+                                <td class="py-3 text-right">10 gr</td>
+                            </tr>
+                            <tr class="border-b border-sand/10">
+                                <td class="py-3">Gula</td>
+                                <td class="py-3 text-right">3 gr</td>
+                            </tr>
+                            <tr class="border-b border-sand/10">
+                                <td class="py-3">Kaldu Bubuk</td>
+                                <td class="py-3 text-right">1 gr</td>
+                            </tr>
+                            <tr>
+                                <td class="pt-3">Daun Jeruk</td>
+                                <td class="pt-3 text-right">2 lbr</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Card 2: Informasi Produk & Penyimpanan (Key-Value List) -->
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-900/50">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-coral/15 flex items-center justify-center shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="text-coral"><path d="M12 8v4l3 2M12 3a9 9 0 100 18 9 9 0 000-18z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                    <h3 class="font-kaftus font-semibold text-xl sm:text-2xl text-sand">Informasi Produk dan Penyimpanan</h3>
+                </div>
+                <!-- Key-Value List Container -->
+                <div class="flex flex-col gap-4">
+                    <!-- Baris 1 -->
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start border-b border-white/10 pb-3 last:border-0 last:pb-0">
+                        <span class="text-gray-400/90 text-sm font-semibold">Berat Bersih</span>
+                        <span class="text-white text-sm md:text-base sm:w-[60%] sm:text-right">150 gram (100% Cumi Segar)</span>
+                    </div>
+                    <!-- Baris 2 -->
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start border-b border-white/10 pb-3 last:border-0 last:pb-0">
+                        <span class="text-gray-400/90 text-sm font-semibold">Produsen</span>
+                        <span class="text-white text-sm md:text-base sm:w-[60%] sm:text-right">UMKM Bahari Sejahtera, Kec. Parigi</span>
+                    </div>
+                    <!-- Baris 3 -->
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start border-b border-white/10 pb-3 last:border-0 last:pb-0">
+                        <span class="text-gray-400/90 text-sm font-semibold">Masa Simpan</span>
+                        <span class="text-white text-sm md:text-base sm:w-[60%] sm:text-right">1 Bulan (Segel pada suhu ruang)</span>
+                    </div>
+                    <!-- Baris 4 -->
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start border-b border-white/10 pb-3 last:border-0 last:pb-0">
+                        <span class="text-gray-400/90 text-sm font-semibold">Penyimpanan</span>
+                        <span class="text-white text-sm md:text-base sm:w-[60%] sm:text-right">Wajib simpan di kulkas setelah kemasan dibuka</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     4. INTERACTIVE MAP SECTION
+========================================================== -->
+<section id="lokasi" class="fade-in-section relative py-20 md:py-28 px-6 z-10">
+    <div class="max-w-5xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto">
+            <p class="font-bold text-xs md:text-sm tracking-[0.25em] uppercase text-rope/70 mb-2">Titik Penjualan</p>
+            <h2 class="font-kaftus font-semibold text-3xl sm:text-4xl text-sand leading-tight mb-2">
+                Temukan Produk Kami di Sini
+            </h2>
+            <p class="text-center text-sand/60 text-sm sm:text-base mb-8">
+                Geser kartu di bawah untuk melihat lokasi di peta, atau ketuk penanda pada peta.
+            </p>
+        </div>
+
+        <div class="rounded-3xl shadow-2xl border border-white/10 overflow-hidden z-10 aspect-[4/3] md:aspect-video mb-8">
+            <div id="map" class="w-full h-full"></div>
+        </div>
+
+        <!-- Swiper Location Carousel -->
+        <div class="swiper location-swiper w-full">
+            <div class="swiper-wrapper" id="location-carousel">
+                <!-- Kartu lokasi akan digenerate oleh JavaScript -->
+            </div>
+        </div>
+
+        <p class="text-center text-xs text-sand/40 mt-6 font-light">
+            * Lokasi bersifat perkiraan, hubungi toko untuk memastikan ketersediaan stok.
+        </p>
+    </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+========================================================== -->
+<footer id="kontak" class="relative text-sand/50 text-center pt-20 pb-48 md:pb-20 px-6 z-10 font-light">
+  <p class="font-magic text-sand/80 text-xl sm:text-2xl mb-2">Sambal Cumi Pangandaran</p>
+  <p class="text-xs sm:text-sm">Diproduksi oleh UMKM Kampung Nelayan Pangandaran, Jawa Barat</p>
+  <p class="text-xs mt-3">© 2026 — Dibuat dengan bangga di pesisir Indonesia</p>
+</footer>
+
+<!-- =========================================================
+     FLOATING NAVIGATION (MOBILE ONLY)
+========================================================== -->
+<div class="floating-nav-wrapper">
+
+  <!-- 6. TAB NAVIGATION -->
+  <nav class="tab-nav">
+    <a href="#hero" class="tab-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Beranda</span>
+    </a>
+    <a href="#cerita" class="tab-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      <span>Cerita</span>
+    </a>
+    <a href="#produk" class="tab-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" x2="21" y1="6" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span>Produk</span>
+    </a>
+    <a href="#lokasi" class="tab-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>Lokasi</span>
+    </a>
+  </nav>
+</div>
+
+<!-- =========================================================
+     SCRIPTS
+========================================================== -->
+<script>
+  // ORBITING GALLERY SCRIPT
+  document.addEventListener('DOMContentLoaded', () => {
+    // A small delay to ensure images have dimensions before positioning
+    setTimeout(positionItems, 100); 
+    window.addEventListener('resize', positionItems);
+
+    function positionItems() {
+      const orbitContainer = document.getElementById('orbit-container');
+      if (!orbitContainer) return;
+
+      const items = orbitContainer.querySelectorAll('.orbit-item');
+      if (items.length === 0) return;
+
+      const numItems = items.length;
+      const radius = orbitContainer.offsetWidth / 2;
+      const centerX = orbitContainer.offsetWidth / 2;
+      const centerY = orbitContainer.offsetHeight / 2;
+
+      items.forEach((item, index) => {
+        // Ensure item has dimensions before calculating
+        if (item.offsetWidth === 0) return;
+
+        const angle = (index / numItems) * 2 * Math.PI - (Math.PI / 2); // Start from top
+        const itemWidth = item.offsetWidth;
+        const itemHeight = item.offsetHeight;
+
+        const x = centerX + radius * Math.cos(angle) - itemWidth / 2;
+        const y = centerY + radius * Math.sin(angle) - itemHeight / 2;
+
+        item.style.left = `${x}px`;
+        item.style.top = `${y}px`;
+      });
+    }
+  });
+</script>
+<script>
+  // PRODUCT GALLERY SCRIPT
+  document.addEventListener('DOMContentLoaded', () => {
+    const mainImage = document.getElementById('main-product-img');
+    const thumbnails = document.querySelectorAll('.thumbnail-img');
+
+    if (mainImage && thumbnails.length > 0) {
+        // Function to set the active thumbnail
+        const setActiveThumbnail = (clickedThumb) => {
+            // Update main image source
+            mainImage.src = clickedThumb.src;
+
+            // Reset all thumbnails
+            thumbnails.forEach(thumb => {
+                thumb.classList.remove('opacity-100', 'border-emerald-500');
+                thumb.classList.add('opacity-60', 'border-transparent');
+            });
+
+            // Activate the clicked thumbnail
+            clickedThumb.classList.add('opacity-100', 'border-emerald-500');
+            clickedThumb.classList.remove('opacity-60', 'border-transparent');
+        };
+
+        // Add click event listeners to all thumbnails
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => setActiveThumbnail(thumb));
+        });
+
+        // Set the first thumbnail as active by default on page load
+        setActiveThumbnail(thumbnails[0]);
+    }
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script src="assets/js/script.js"></script>
+
+</body>
+</html>
