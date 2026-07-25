@@ -107,50 +107,40 @@
 <!-- =========================================================
      1. HERO SECTION (REBUILT WITH ORBITING GALLERY)
 ========================================================== -->
-<header id="hero" class="relative flex items-center justify-center min-h-screen overflow-hidden z-10">
+<header id="hero" class="relative flex items-center justify-center min-h-screen z-10">
 
-  <!-- Orbiting Gallery Background -->
-  <div id="orbit-gallery" class="absolute inset-0 w-full h-full flex items-center justify-center">
-    <div id="orbit-container" class="relative w-[90vw] h-[90vw] max-w-[22rem] max-h-[22rem] sm:w-[30rem] sm:h-[30rem] md:w-[40rem] md:h-[40rem] lg:w-[48rem] lg:h-[48rem]">
-      <!-- 8 Image Placeholders -->
+  <div class="hero-wrapper">
+    <!-- Static, centered logo -->
+    <img src="assets/images/LOGO_PRODUK.svg" alt="Logo Sambal Cumi" class="logo-center">
+
+    <!-- This container will spin -->
+    <div class="orbit-container">
+      <!-- These items will counter-spin -->
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal1/200" alt="Botol Sambal Cumi" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="https://picsum.photos/seed/sambal1/200" alt="Botol Sambal Cumi" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal2/200" alt="Sambal Cumi disajikan dengan nasi" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="https://picsum.photos/seed/sambal2/200" alt="Sambal Cumi disajikan dengan nasi" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal3/200" alt="Proses memasak sambal" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="https://picsum.photos/seed/sambal3/200" alt="Proses memasak sambal" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal4/200" alt="Bahan baku cumi segar" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="https://picsum.photos/seed/sambal4/200" alt="Bahan baku cumi segar" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal5/200" alt="Kemasan Sambal Cumi" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="https://picsum.photos/seed/sambal5/200" alt="Kemasan Sambal Cumi" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal6/200" alt="Detail tekstur Sambal Cumi" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="https://picsum.photos/seed/sambal6/200" alt="Detail tekstur Sambal Cumi" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal7/200" alt="Suasana pesisir Pangandaran" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="https://picsum.photos/seed/sambal7/200" alt="Suasana pesisir Pangandaran" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal8/200" alt="Bumbu rempah segar" class="w-24 h-24 md:w-36 md:h-36 object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="https://picsum.photos/seed/sambal8/200" alt="Bumbu rempah segar" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
     </div>
-  </div>
-
-  <!-- Centered Text Content -->
-  <div class="relative z-20 max-w-xl mx-auto px-6 text-center">
-    <h1 class="font-kaftus font-semibold text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-tight">
-      Sambal Cumi
-    </h1>
-    <p class="font-magic text-rope text-2xl sm:text-3xl mt-2">
-      “Pedas, Gurih, dan Menggugah Selera”
-    </p>
-    <p class="text-sand/80 text-base sm:text-lg mt-6 leading-relaxed max-w-md mx-auto font-light">
-      Paduan cumi segar pilihan dan terasi bakar, dimasak perlahan dengan rempah Nusantara oleh warga pesisir Pangandaran.
-    </p>
   </div>
 </header>
 
@@ -347,15 +337,17 @@
 ========================================================== -->
 <section id="lokasi" class="fade-in-section relative py-20 md:py-28 px-6 z-10">
     <div class="max-w-5xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto">
-            <p class="font-bold text-xs md:text-sm tracking-[0.25em] uppercase text-rope/70 mb-2">Titik Penjualan</p>
-            <h2 class="font-kaftus font-semibold text-3xl sm:text-4xl text-sand leading-tight mb-2">
-                Temukan Produk Kami di Sini
-            </h2>
-            <p class="text-center text-sand/60 text-sm sm:text-base mb-8">
-                Geser kartu di bawah untuk melihat lokasi di peta, atau ketuk penanda pada peta.
-            </p>
+        <div class="w-full flex justify-center py-10 mb-8">
+            <div class="flex flex-col items-center justify-center px-12 py-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                <p class="text-sm font-bold text-emerald-200/90 tracking-[0.3em] uppercase mb-2">Titik Penjualan</p>
+                <h2 class="font-kaftus font-semibold text-4xl text-white">
+                    Temukan Produk Kami di Sini
+                </h2>
+            </div>
         </div>
+        <p class="text-center text-sand/60 text-sm sm:text-base mb-8">
+            Geser kartu di bawah untuk melihat lokasi di peta, atau ketuk penanda pada peta.
+        </p>
 
         <div class="rounded-3xl shadow-2xl border border-white/10 overflow-hidden z-10 aspect-[4/3] md:aspect-video mb-8">
             <div id="map" class="w-full h-full"></div>
@@ -386,7 +378,7 @@
 <!-- =========================================================
      FLOATING NAVIGATION (MOBILE ONLY)
 ========================================================== -->
-<div class="floating-nav-wrapper md:hidden">
+<div class="floating-nav-wrapper">
 
   <!-- 6. TAB NAVIGATION -->
   <nav class="tab-nav">
@@ -412,42 +404,7 @@
 <!-- =========================================================
      SCRIPTS
 ========================================================== -->
-<script>
-  // ORBITING GALLERY SCRIPT
-  document.addEventListener('DOMContentLoaded', () => {
-    // A small delay to ensure images have dimensions before positioning
-    setTimeout(positionItems, 100); 
-    window.addEventListener('resize', positionItems);
 
-    function positionItems() {
-      const orbitContainer = document.getElementById('orbit-container');
-      if (!orbitContainer) return;
-
-      const items = orbitContainer.querySelectorAll('.orbit-item');
-      if (items.length === 0) return;
-
-      const numItems = items.length;
-      const radius = orbitContainer.offsetWidth / 2;
-      const centerX = orbitContainer.offsetWidth / 2;
-      const centerY = orbitContainer.offsetHeight / 2;
-
-      items.forEach((item, index) => {
-        // Ensure item has dimensions before calculating
-        if (item.offsetWidth === 0) return;
-
-        const angle = (index / numItems) * 2 * Math.PI - (Math.PI / 2); // Start from top
-        const itemWidth = item.offsetWidth;
-        const itemHeight = item.offsetHeight;
-
-        const x = centerX + radius * Math.cos(angle) - itemWidth / 2;
-        const y = centerY + radius * Math.sin(angle) - itemHeight / 2;
-
-        item.style.left = `${x}px`;
-        item.style.top = `${y}px`;
-      });
-    }
-  });
-</script>
 <script>
   // PRODUCT GALLERY SCRIPT
   document.addEventListener('DOMContentLoaded', () => {

@@ -1,242 +1,119 @@
 html { scroll-behavior: smooth; }
 body { 
-  /* The background color is now set on the body tag in index.html */
   overflow-x: hidden;
+  /* Add padding to prevent content from being hidden by the fixed navbar */
+  padding-bottom: 120px; /* Increased padding */
 }
 
 /* =========================================================
-   RESPONSIVE & READABILITY FIXES
+   REFACTORED HERO ANIMATION STYLES (v2)
 ========================================================== */
-/* Improve title readability over complex backgrounds */
-#hero h1,
-#hero .font-magic,
+.hero-wrapper {
+  position: relative;
+  width: 90vw;
+  max-width: 600px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+.logo-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  max-width: 40%;
+  height: auto;
+  /* NO animation on the logo */
+}
+
+.orbit-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Animation for the container of orbiting items */
+  animation: spin 40s linear infinite;
+}
+.orbit-container:hover,
+.orbit-container:hover .orbit-item {
+  animation-play-state: paused;
+}
+
+.orbit-item {
+  position: absolute;
+  width: 20%;
+  aspect-ratio: 1 / 1;
+  /* Counter-spin animation to keep images upright */
+  animation: counter-spin 40s linear infinite;
+}
+.orbit-item img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Positioning for each of the 8 orbiting items inside .orbit-container */
+.orbit-item:nth-child(1) { top: 40%; left: 80%; } /* 0 deg */
+.orbit-item:nth-child(2) { top: 68.3%; left: 68.3%; } /* 45 deg */
+.orbit-item:nth-child(3) { top: 80%; left: 40%; } /* 90 deg */
+.orbit-item:nth-child(4) { top: 68.3%; left: 11.7%; } /* 135 deg */
+.orbit-item:nth-child(5) { top: 40%; left: 0%; } /* 180 deg */
+.orbit-item:nth-child(6) { top: 11.7%; left: 11.7%; } /* 225 deg */
+.orbit-item:nth-child(7) { top: 0%; left: 40%; } /* 270 deg */
+.orbit-item:nth-child(8) { top: 11.7%; left: 68.3%; } /* 315 deg */
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes counter-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+
+/* =========================================================
+   READABILITY & PARALLAX
+========================================================== */
 .fade-in-section h2 {
   position: relative;
   z-index: 2;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
-
-
-/* =========================================================
-   NEW: PARALLAX FLOATING ELEMENTS
-========================================================== */
 #parallax-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 0;
-  pointer-events: none;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  overflow: hidden; z-index: 0; pointer-events: none;
 }
-
 .parallax-element {
-  position: absolute;
-  top: -100px; /* Start off-screen */
-  font-family: 'Fraunces', serif;
-  font-weight: 500;
-  color: #C9A876;
-  opacity: 0.06;
-  font-size: var(--size);
-  left: var(--left);
-  animation: float-down 20s linear infinite;
-  animation-delay: var(--delay);
+  position: absolute; top: -100px; font-family: 'Fraunces', serif;
+  font-weight: 500; color: #C9A876; opacity: 0.06;
+  font-size: var(--size); left: var(--left);
+  animation: float-down 20s linear infinite; animation-delay: var(--delay);
   will-change: transform;
 }
-
 @keyframes float-down {
-  from {
-    transform: translateY(0vh) rotate(0deg);
-  }
-  to {
-    transform: translateY(110vh) rotate(360deg);
-  }
+  from { transform: translateY(0vh) rotate(0deg); }
+  to { transform: translateY(110vh) rotate(360deg); }
 }
+
 
 /* =========================================================
-   NEW: AMBIENT AUDIO TOGGLE
+   BOTTOM NAVBAR FIX
 ========================================================== */
-#audio-toggle-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: rgba(243, 237, 221, 0.05);
-  border: 1px solid rgba(243, 237, 221, 0.1);
-  border-radius: 9999px;
-  padding: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-#audio-toggle-btn:hover {
-  background: rgba(243, 237, 221, 0.1);
-  border-color: rgba(243, 237, 221, 0.2);
-}
-#audio-toggle-btn .icon-wrapper {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(243, 237, 221, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #F3EDDD;
-}
-.wave-animation {
-  display: flex;
-  align-items: center;
-  width: 0;
-  height: 20px;
-  gap: 3px;
-  transition: width 0.4s ease;
-  overflow: hidden;
-}
-.wave-animation span {
-  width: 2px;
-  background-color: #E76F51;
-  border-radius: 2px;
-  transform-origin: bottom;
-  height: 2px;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-#audio-toggle-btn.is-playing .wave-animation {
-  width: 26px; /* Expand to show waves */
-  margin-left: -4px;
-}
-#audio-toggle-btn.is-playing .wave-animation span {
-  opacity: 1;
-  animation: audio-wave 1.2s ease-in-out infinite;
-}
-.wave-animation span:nth-child(2) { animation-delay: -1.0s; }
-.wave-animation span:nth-child(3) { animation-delay: -0.8s; }
-.wave-animation span:nth-child(4) { animation-delay: -0.6s; }
-
-@keyframes audio-wave {
-  0% { transform: scaleY(0.1); }
-  25% { transform: scaleY(1); }
-  50% { transform: scaleY(0.3); }
-  75% { transform: scaleY(0.8); }
-  100% { transform: scaleY(0.1); }
-}
-
-/* =========================================================
-   EXISTING STYLES (MODIFIED & UNCHANGED)
-========================================================== */
-.wave-divider {
-  display: block; width: 100%; height: 46px; line-height: 0;
-}
-.wave-divider svg { display: block; width: 100%; height: 100%; }
-
-.stamp {
-  border: 1.5px solid currentColor;
-  border-radius: 9999px;
-  position: relative;
-}
-.stamp::before {
-  content: '';
-  position: absolute;
-  inset: 3px;
-  border: 1px dashed currentColor;
-  border-radius: 9999px;
-  opacity: .55;
-}
-
-.chart-frame {
-  border: 2px dashed #C9A876;
-  box-shadow: 0 0 0 8px #0F3D3E, 0 0 0 9px #C9A876;
-}
-
-.leaflet-popup-content-wrapper { border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; }
-.leaflet-popup-content { margin: 10px 14px; }
-
-.marker-pin {
-  background: #E76F51; /* coral */
-  width: 18px;
-  height: 18px;
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
-  border: 2px solid #F3EDDD; /* sand */
-  box-shadow: 0 4px 8px rgba(0,0,0,.4);
-  transition: all 0.3s ease;
-}
-
-.leaflet-marker-icon.is-active .marker-pin {
-  background: #fca5a5; /* A brighter, active color */
-  transform: rotate(-45deg) scale(1.3);
-  border-color: #fff;
-}
-
-.location-card.is-active {
-  border-color: #E76F51 !important; /* coral */
-  transform: scale(1.03);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-up, .parallax-element, .wave-animation span { animation: none !important; }
-  .parallax-element { display: none; }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-up { animation: fadeUp .8s ease-out both; }
-.delay-1 { animation-delay: .12s; }
-.delay-2 { animation-delay: .24s; }
-.delay-3 { animation-delay: .36s; }
-
-.fade-in-section {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in-section.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-a:focus-visible, button:focus-visible {
-  outline: 3px solid #E76F51;
-  outline-offset: 2px;
-}
-
 .floating-nav-wrapper {
   position: fixed;
-  bottom: 1rem;
+  /* Positioned at the bottom, centered horizontally */
+  bottom: 20px; /* Floating above the very bottom */
   left: 50%;
-  transform: translateX(-50%);
-  z-index: 50;
-  width: calc(100% - 2.5rem);
-  max-width: 24rem;
+  transform: translateX(-50%); /* Center horizontally */
+  width: 90%; /* Responsive width */
+  max-width: 500px; /* Max width for larger screens */
+  /* High z-index to stay on top */
+  z-index: 9999; 
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.whatsapp-cta {
-  background-color: #25D366;
-  color: white;
-  font-weight: 600;
-  font-size: 15px;
-  border-radius: 9999px;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 0.625rem;
-  transition: transform 0.2s;
-}
-.whatsapp-cta:active {
-  transform: scale(0.95);
-}
-/* Remove default pulse, we will add our own interaction */
-.whatsapp-cta.animate-pulse {
-  animation: none;
+  padding: 0.5rem;
 }
 
 .tab-nav {
@@ -244,37 +121,48 @@ a:focus-visible, button:focus-visible {
   justify-content: space-around;
   background-color: rgba(15, 61, 62, 0.85);
   backdrop-filter: blur(8px);
-  border-radius: 9999px;
-  padding: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+  border-radius: 20px; /* Adjusted for a modern look */
+  padding: 0.75rem 0.5rem;
+  box-shadow: 0 -5px 20px -5px rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(243, 237, 221, 0.1);
+  width: 100%;
+  /* max-width: 28rem; Removed as width: 90% on wrapper handles this */
 }
 
 .tab-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.125rem;
-  color: #F3EDDD;
-  opacity: 0.65;
-  font-size: 10px;
-  padding: 0.25rem 0.5rem;
-  border-radius: 9999px;
-  transition: all 0.3s;
-  text-decoration: none;
+  display: flex; flex-direction: column; align-items: center; gap: 0.125rem;
+  color: #F3EDDD; opacity: 0.65; font-size: 10px;
+  padding: 0.25rem 0.5rem; border-radius: 9999px;
+  transition: all 0.3s; text-decoration: none;
 }
 
 .tab-item.active,
 .tab-item:hover {
-  opacity: 1;
-  background-color: rgba(243, 237, 221, 0.1);
+  opacity: 1; background-color: rgba(243, 237, 221, 0.1);
 }
+.tab-item span { font-weight: 500; }
 
-.tab-item span {
-  font-weight: 500;
-}
 
-/* Hide scrollbar for location carousel */
-#location-carousel::-webkit-scrollbar {
-  display: none;
-}
+/* =========================================================
+   MISC & UTILITIES (UNCHANGED/KEPT)
+========================================================== */
+.wave-divider { display: block; width: 100%; height: 46px; line-height: 0; }
+.wave-divider svg { display: block; width: 100%; height: 100%; }
+.stamp { border: 1.5px solid currentColor; border-radius: 9999px; position: relative; }
+.stamp::before { content: ''; position: absolute; inset: 3px; border: 1px dashed currentColor; border-radius: 9999px; opacity: .55; }
+.chart-frame { border: 2px dashed #C9A876; box-shadow: 0 0 0 8px #0F3D3E, 0 0 0 9px #C9A876; }
+.leaflet-popup-content-wrapper { border-radius: 12px; font-family: 'Plus Jakarta Sans', sans-serif; }
+.leaflet-popup-content { margin: 10px 14px; }
+.marker-pin { background: #E76F51; width: 18px; height: 18px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid #F3EDDD; box-shadow: 0 4px 8px rgba(0,0,0,.4); transition: all 0.3s ease; }
+.leaflet-marker-icon.is-active .marker-pin { background: #fca5a5; transform: rotate(-45deg) scale(1.3); border-color: #fff; }
+.location-card.is-active { border-color: #E76F51 !important; transform: scale(1.03); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+@media (prefers-reduced-motion: reduce) { .animate-fade-up, .parallax-element, .wave-animation span, .orbit-container, .orbit-item { animation: none !important; } .parallax-element { display: none; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.animate-fade-up { animation: fadeUp .8s ease-out both; }
+.delay-1 { animation-delay: .12s; }
+.delay-2 { animation-delay: .24s; }
+.delay-3 { animation-delay: .36s; }
+.fade-in-section { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+a:focus-visible, button:focus-visible { outline: 3px solid #E76F51; outline-offset: 2px; }
+#location-carousel::-webkit-scrollbar { display: none; }
