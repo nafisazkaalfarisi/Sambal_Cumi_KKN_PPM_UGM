@@ -16,16 +16,24 @@ body {
   margin: 0 auto;
 }
 
-.logo-center {
+.center-brand {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
-  max-width: 40%;
-  height: auto;
-  /* NO animation on the logo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: max-content;
 }
+
+.center-brand img {
+  width: clamp(200px, 35vw, 400px);
+  height: auto;
+}
+
 
 .orbit-container {
   position: absolute;

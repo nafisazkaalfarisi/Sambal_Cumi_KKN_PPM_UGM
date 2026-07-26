@@ -110,8 +110,10 @@
 <header id="hero" class="relative flex items-center justify-center min-h-screen z-10">
 
   <div class="hero-wrapper">
-    <!-- Static, centered logo -->
-    <img src="assets/images/LOGO_PRODUK.svg" alt="Logo Sambal Cumi" class="logo-center">
+    <!-- Static, centered brand -->
+    <div class="center-brand">
+      <img src="assets/images/LOGO_PRODUK.svg" alt="Logo Sambal Cumi">
+    </div>
 
     <!-- This container will spin -->
     <div class="orbit-container">
@@ -404,42 +406,158 @@
 <!-- =========================================================
      SCRIPTS
 ========================================================== -->
-
-<script>
-  // PRODUCT GALLERY SCRIPT
-  document.addEventListener('DOMContentLoaded', () => {
-    const mainImage = document.getElementById('main-product-img');
-    const thumbnails = document.querySelectorAll('.thumbnail-img');
-
-    if (mainImage && thumbnails.length > 0) {
-        // Function to set the active thumbnail
-        const setActiveThumbnail = (clickedThumb) => {
-            // Update main image source
-            mainImage.src = clickedThumb.src;
-
-            // Reset all thumbnails
-            thumbnails.forEach(thumb => {
-                thumb.classList.remove('opacity-100', 'border-emerald-500');
-                thumb.classList.add('opacity-60', 'border-transparent');
-            });
-
-            // Activate the clicked thumbnail
-            clickedThumb.classList.add('opacity-100', 'border-emerald-500');
-            clickedThumb.classList.remove('opacity-60', 'border-transparent');
-        };
-
-        // Add click event listeners to all thumbnails
-        thumbnails.forEach(thumb => {
-            thumb.addEventListener('click', () => setActiveThumbnail(thumb));
-        });
-
-        // Set the first thumbnail as active by default on page load
-        setActiveThumbnail(thumbnails[0]);
-    }
-  });
-</script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-<script src="assets/js/script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // ---- Inisialisasi Peta & Carousel Sinkron ----
+  const mapContainer = document.getElementById('map');
+  if (mapContainer) {
+    const map = L.map('map', {
+      scrollWheelZoom: true,
+      zoomControl: false,
+    }).setView([-7.69, 108.50], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    L.control.zoom({ position: 'topright' }).addTo(map);
+
+    const pinIcon = L.divIcon({ className: 'marker-pin' });
+    const activePinIcon = L.divIcon({ className: 'marker-pin is-active' });
+
+    // 1. Data Array untuk Lokasi (sumber tunggal)
+    const locationsData = [
+        { id: 'posko-karangjaladri', name: 'Posko KKN Karangjaladri', lat: -7.708042, lng: 108.499689, img: 'https://picsum.photos/seed/kkn1/400/300', gambarRuko: 'https://picsum.photos/seed/rukoA/400/300', jarak: "± 2.5km", deskripsi: "Produk tersedia di posko KKN Karangjaladri.", nomorWA: '6281234567890' },
+        { id: 'posko-cintakarya', name: 'Posko KKN Cintakarya', lat: -7.656796, lng: 108.479859, img: 'https://picsum.photos/seed/kkn2/400/300', gambarRuko: 'https://picsum.photos/seed/rukoB/400/300', jarak: "± 4.0km", deskripsi: "Produk tersedia di posko KKN Cintakarya.", nomorWA: '6281234567891' },
+        { id: 'saung-mangrove', name: 'RM Saung Mangrove', lat: -7.713518, lng: 108.499433, img: 'https://picsum.photos/seed/mangrove/400/300', gambarRuko: 'https://picsum.photos/seed/rukoC/400/300', jarak: "± 2.8km", deskripsi: "Tersedia di Rumah Makan Saung Mangrove.", nomorWA: '6281234567892' },
+        { id: 'pasar-parigi', name: 'Pasar Parigi', lat: -7.695640, lng: 108.501865, img: 'https://picsum.photos/seed/pasar1/400/300', gambarRuko: 'https://picsum.photos/seed/rukoD/400/300', jarak: "± 1.0km", deskripsi: "Temukan produk kami di area Pasar Parigi.", nomorWA: '6281234567893' },
+        { id: 'pasar-pananjung', name: 'Pasar Pananjung Pangandaran', lat: -7.683983, lng: 108.650479, img: 'https://picsum.photos/seed/pasar2/400/300', gambarRuko: 'https://picsum.photos/seed/rukoE/400/300', jarak: "± 15km", deskripsi: "Temukan produk kami di area Pasar Pananjung.", nomorWA: '6281234567894' },
+        { id: 'pasar-cijulang', name: 'Pasar Cijulang', lat: -7.728559, lng: 108.473713, img: 'https://picsum.photos/seed/pasar3/400/300', gambarRuko: 'https://picsum.photos/seed/rukoF/400/300', jarak: "± 5.5km", deskripsi: "Temukan produk kami di area Pasar Cijulang.", nomorWA: '6281234567895' }
+    ];
+
+    const carouselContainer = document.getElementById('location-carousel');
+    const markers = {};
+
+    const setActiveItem = (locationId) => {
+      Object.values(markers).forEach(m => m.setIcon(pinIcon).setZIndexOffset(0));
+      document.querySelectorAll('.location-card').forEach(c => c.classList.remove('is-active'));
+      if (locationId) {
+        const activeMarker = markers[locationId];
+        if (activeMarker) activeMarker.setIcon(activePinIcon).setZIndexOffset(1000);
+        const activeCard = document.querySelector(`.swiper-slide[data-location-id="${locationId}"] .location-card`);
+        if (activeCard) activeCard.classList.add('is-active');
+      }
+    };
+
+    locationsData.forEach((location, index) => {
+      // 2. Generate Kartu Slider
+      const slide = document.createElement('div');
+      slide.className = "swiper-slide w-[280px] md:w-[320px]"; // Added width classes
+      slide.dataset.locationId = location.id;
+      slide.innerHTML = `
+        <div class="location-card h-full bg-navy/60 backdrop-blur-lg border-2 border-transparent rounded-3xl shadow-lg transition-all duration-300 overflow-hidden cursor-pointer">
+            <img src="${location.img}" alt="Gambar ${location.name}" class="h-32 w-full object-cover" loading="lazy">
+            <div class="p-4 text-left">
+                <h3 class="font-kaftus font-semibold text-xl text-sand">${location.name}</h3>
+                <p class="text-xs text-sand/60 mt-1 mb-2">${location.jarak}</p>
+                <p class="text-sm text-sand/80 leading-relaxed line-clamp-2">${location.deskripsi}</p>
+            </div>
+        </div>
+      `;
+      carouselContainer.appendChild(slide);
+
+      // 3. Generate Custom Popup HTML
+      const popupContent = `
+        <div class="flex flex-col gap-3 font-poppins text-ink" style="width: 240px;">
+            <img src="${location.gambarRuko}" alt="Foto ${location.name}" class="w-full h-28 object-cover rounded-lg shadow-md">
+            <h3 class="font-bold text-lg leading-tight">${location.name}</h3>
+            <div class="flex flex-col gap-2 mt-1">
+                <a href="https://wa.me/${location.nomorWA}?text=Halo,%20saya%20tertarik%20dengan%20produk%20Sambal%20Cumi" target="_blank" rel="noopener noreferrer" class="bg-emerald-500 text-white text-sm font-semibold px-4 py-2 rounded-md flex items-center justify-center gap-2 no-underline transition-all duration-200 hover:bg-emerald-600 hover:shadow-lg hover:-translate-y-0.5">
+                    💬 Pesan Sekarang
+                </a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}" target="_blank" rel="noopener noreferrer" class="bg-gray-800 text-white text-sm font-semibold px-4 py-2 rounded-md flex items-center justify-center gap-2 no-underline transition-all duration-200 hover:bg-gray-900 hover:shadow-lg hover:-translate-y-0.5">
+                    📍 Rute ke Lokasi
+                </a>
+            </div>
+        </div>
+      `;
+
+      const marker = L.marker([location.lat, location.lng], { icon: pinIcon, locationId: location.id })
+        .addTo(map)
+        .bindPopup(popupContent, { minWidth: 240 });
+      
+      markers[location.id] = marker;
+
+      marker.on('click', () => {
+        if (swiper) swiper.slideTo(index);
+      });
+    });
+
+    const swiper = new Swiper('.location-swiper', {
+      effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView: 'auto',
+      coverflowEffect: { rotate: 0, stretch: 0, depth: 150, modifier: 2.5, slideShadows: false },
+      initialSlide: 2, loop: false, // Set initial slide to the third item (index 2)
+    });
+
+    swiper.on('slideChange', function () {
+      const activeSlide = this.slides[this.activeIndex];
+      if (!activeSlide) return;
+      const locationId = activeSlide.dataset.locationId;
+      const locationData = locationsData.find(loc => loc.id === locationId);
+      if (locationData) {
+        map.flyTo([locationData.lat, locationData.lng], 15, { animate: true, duration: 1.2 });
+        setActiveItem(locationId);
+      }
+    });
+    
+    swiper.on('click', function() {
+        const activeSlide = this.slides[this.activeIndex];
+        if (!activeSlide) return;
+        const locationId = activeSlide.dataset.locationId;
+        if(markers[locationId] && !markers[locationId].isPopupOpen()) {
+            markers[locationId].openPopup();
+        }
+    });
+
+    document.querySelectorAll('.swiper-slide').forEach((slide, index) => {
+        slide.addEventListener('click', () => swiper.slideTo(index));
+    });
+
+    setActiveItem(locationsData[2].id); // Set active item to the third location
+    markers[locationsData[2].id].openPopup(); // Open popup for the third location
+  }
+
+  // ---- Sisa script yang tidak berubah ----
+  const mainImage = document.getElementById('main-product-img');
+  const thumbnails = document.querySelectorAll('.thumbnail-img');
+  if (mainImage && thumbnails.length > 0) {
+      const setActiveThumbnail = (c) => { mainImage.src = c.src; thumbnails.forEach(t => {t.classList.remove('opacity-100','border-emerald-500');t.classList.add('opacity-60','border-transparent')}); c.classList.add('opacity-100','border-emerald-500');c.classList.remove('opacity-60','border-transparent');};
+      thumbnails.forEach(t => t.addEventListener('click', () => setActiveThumbnail(t)));
+      setActiveThumbnail(thumbnails[0]);
+  }
+  const tabs = document.querySelectorAll('.tab-item');
+  const sections = document.querySelectorAll('header, section');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tabs.forEach(t => t.getAttribute('href').substring(1) === entry.target.id ? t.classList.add('active') : t.classList.remove('active'));
+      }
+    });
+  }, { threshold: 0.5 });
+  sections.forEach(s => s.id && scrollObserver.observe(s));
+  const animatedSections = document.querySelectorAll('.fade-in-section');
+  const sectionObserver = new IntersectionObserver((e, o) => { e.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); o.unobserve(entry.target); } }); }, { threshold: 0.1 });
+  animatedSections.forEach(s => sectionObserver.observe(s));
+});
+</script>
 
 </body>
 </html>
