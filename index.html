@@ -119,28 +119,28 @@
     <div class="orbit-container">
       <!-- These items will counter-spin -->
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal1/200" alt="Botol Sambal Cumi" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="./assets/images/GAMBAR_BERANDA/KAPAL.JPG" alt="KAPAL" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal2/200" alt="Sambal Cumi disajikan dengan nasi" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="./assets/images/GAMBAR_BERANDA/PANTAI.JPEG" alt="PANTAI" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal3/200" alt="Proses memasak sambal" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="./assets/images/GAMBAR_BERANDA/PELABUHAN.JPG" alt="PELABUHAN" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal4/200" alt="Bahan baku cumi segar" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="./assets/images/GAMBAR_BERANDA/SUNSET%20PASIR%20PUTIH.JPG" alt="SUNSET PASIR PUTIH" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal5/200" alt="Kemasan Sambal Cumi" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="./assets/images/GAMBAR_BERANDA/TEMPAT%20BELI%20CUMI.JPG" alt="TEMPAT BELI CUMI" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal6/200" alt="Detail tekstur Sambal Cumi" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+              <img src="./assets/images/GAMBAR_BERANDA/TPI-BOJONG.jpeg" alt="TPI-BOJONG" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+            </div>
+      <div class="orbit-item">
+        <img src="./assets/images/GAMBAR_BERANDA/CUMI%20MASUK%20WAJAN.JPG" alt="CUMI MASUK WAJAN" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
       <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal7/200" alt="Suasana pesisir Pangandaran" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
-      </div>
-      <div class="orbit-item">
-        <img src="https://picsum.photos/seed/sambal8/200" alt="Bumbu rempah segar" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
+        <img src="./assets/images/GAMBAR_BERANDA/MASUKIN%20SAMBAL.JPG" alt="MASUKIN SAMBAL" class="object-cover rounded-2xl md:rounded-3xl shadow-2xl shadow-black/50">
       </div>
     </div>
   </div>
@@ -160,57 +160,107 @@
         </div>
     </div>
 
-    <!-- Story Map / Zig-Zag Timeline Container -->
-    <div class="mt-16 md:mt-20 space-y-16 md:space-y-24">
+    <!-- Story Map / Grid Container -->
+    <div class="mt-16 md:mt-20 relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
 
-        <!-- Blok 1: Awal Mula -->
-        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <div class="md:w-1/2 text-center md:text-left">
-                <p class="text-base sm:text-lg leading-loose text-sand/80 font-light">
-                    Setiap botol berawal dari fajar di pesisir Pangandaran. Nelayan lokal bersandar membawa tangkapan cumi segar terbaik dari laut.
-                </p>
-            </div>
-            <div class="md:w-1/2">
-                <img src="https://source.unsplash.com/random/800x600/?boat,sunrise,fishing" alt="Perahu nelayan saat fajar membawa tangkapan cumi" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-lg">
+        <!-- Kartu 1: Tangkapan Fajar Pesisir -->
+        <div class="story-card relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300 md:order-1" data-story-index="0">
+            <img src="./assets/images/GAMBAR_CERITA/CERITA1.jpg" alt="Tangkapan Fajar Pesisir" class="w-full h-full object-cover">
+            <div class="absolute bottom-4 left-4 right-4 p-2 bg-navy-dark/70 backdrop-blur-sm rounded-full border border-yellow-400/30">
+                <h3 class="font-kaftus text-base text-yellow-400 text-center truncate px-2">
+                    Tangkapan Fajar Pesisir
+                </h3>
             </div>
         </div>
 
-        <!-- Blok 2: Bahan Baku -->
-        <div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
-            <div class="md:w-1/2 text-center md:text-left">
-                <p class="text-base sm:text-lg leading-loose text-sand/80 font-light">
-                    Cumi dibersihkan saksama, lalu dipertemukan dengan hasil bumi pilihan: cabai keriting merah, tomat segar, bawang, serai, lengkuas, dan terasi bakar khas pesisir.
-                </p>
-            </div>
-            <div class="md:w-1/2">
-                <img src="https://source.unsplash.com/random/800x600/?spices,chili,herbs" alt="Bumbu rempah segar untuk sambal" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-lg">
+        <!-- Kartu 2: Pemilihan Rempah Bumi -->
+        <div class="story-card relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300 md:order-2" data-story-index="1">
+            <img src="./assets/images/GAMBAR_CERITA/CERITA2.jpg" alt="Pemilihan Rempah Bumi" class="w-full h-full object-cover">
+            <div class="absolute bottom-4 left-4 right-4 p-2 bg-navy-dark/70 backdrop-blur-sm rounded-full border border-yellow-400/30">
+                <h3 class="font-kaftus text-base text-yellow-400 text-center truncate px-2">
+                    Pemilihan Rempah Bumi
+                </h3>
             </div>
         </div>
 
-        <!-- Blok 3: Proses Masak -->
-        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-            <div class="md:w-1/2 text-center md:text-left">
-                <p class="text-base sm:text-lg leading-loose text-sand/80 font-light">
-                    Bumbu ditumis hingga harum. Dimasak perlahan dengan kesabaran dan api kecil agar bumbu meresap sempurna ke dalam serat cumi dan mengeluarkan minyak alaminya.
-                </p>
-            </div>
-            <div class="md:w-1/2">
-                <img src="https://source.unsplash.com/random/800x600/?cooking,pan,sauce" alt="Proses memasak sambal di wajan" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-lg">
+        <!-- Kartu 3: Rahasia Terasi Bakar -->
+        <div class="story-card relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300 md:order-3" data-story-index="2">
+            <img src="./assets/images/GAMBAR_CERITA/CERITA3.jpg" alt="Rahasia Terasi Bakar" class="w-full h-full object-cover">
+            <div class="absolute bottom-4 left-4 right-4 p-2 bg-navy-dark/70 backdrop-blur-sm rounded-full border border-yellow-400/30">
+                <h3 class="font-kaftus text-base text-yellow-400 text-center truncate px-2">
+                    Rahasia Terasi Bakar
+                </h3>
             </div>
         </div>
 
-        <!-- Blok 4: Hasil Akhir -->
-        <div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
-            <div class="md:w-1/2 text-center md:text-left">
-                <p class="text-base sm:text-lg leading-loose text-sand/80 font-light">
-                    Menciptakan cita rasa pedas gurih yang tak terlupakan, dikemas rapat untuk membawa sensasi hidangan laut langsung ke meja makan Anda.
-                </p>
-            </div>
-            <div class="md:w-1/2">
-                <img src="https://source.unsplash.com/random/800x600/?jar,sambal,product" alt="Sambal cumi dalam kemasan botol siap saji" class="w-full aspect-[4/3] object-cover rounded-2xl shadow-lg">
+        <!-- Kartu 4: Proses Masak Perlahan -->
+        <div class="story-card relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300 md:order-6" data-story-index="3">
+            <img src="./assets/images/GAMBAR_CERITA/CERITA4.JPG" alt="Proses Masak Perlahan" class="w-full h-full object-cover">
+            <div class="absolute bottom-4 left-4 right-4 p-2 bg-navy-dark/70 backdrop-blur-sm rounded-full border border-yellow-400/30">
+                <h3 class="font-kaftus text-base text-yellow-400 text-center truncate px-2">
+                    Proses Masak Perlahan
+                </h3>
             </div>
         </div>
 
+        <!-- Kartu 5: Sentuhan Tangan Karangjaladri -->
+        <div class="story-card relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300 md:order-5" data-story-index="4">
+            <img src="./assets/images/GAMBAR_CERITA/CERITA5.JPG" alt="Sentuhan Tangan Karangjaladri" class="w-full h-full object-cover">
+            <div class="absolute bottom-4 left-4 right-4 p-2 bg-navy-dark/70 backdrop-blur-sm rounded-full border border-yellow-400/30">
+                <h3 class="font-kaftus text-base text-yellow-400 text-center truncate px-2">
+                    Sentuhan Tangan Karangjaladri
+                </h3>
+            </div>
+        </div>
+
+        <!-- Kartu 6: Kelezatan Siap Saji -->
+        <div class="story-card relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-transform duration-300 md:order-4" data-story-index="5">
+            <img src="./assets/images/GAMBAR_CERITA/CERITA6.JPG" alt="Kelezatan Siap Saji" class="w-full h-full object-cover">
+            <div class="absolute bottom-4 left-4 right-4 p-2 bg-navy-dark/70 backdrop-blur-sm rounded-full border border-yellow-400/30">
+                <h3 class="font-kaftus text-base text-yellow-400 text-center truncate px-2">
+                    Kelezatan Siap Saji
+                </h3>
+            </div>
+        </div>
+
+        <!-- Arrows for Desktop -->
+        <div aria-hidden="true" class="hidden md:block absolute inset-0 pointer-events-none text-white">
+            <!-- Panah 1 -> 2 -->
+            <div class="absolute top-1/4 left-1/3 -translate-x-1/2 -translate-y-1/2">
+                <svg class="w-28 h-auto drop-shadow-md" viewBox="0 0 110 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 10H100" stroke="currentColor" stroke-width="2.5"/>
+                    <path d="M95 1L109 10L95 19" stroke="currentColor" stroke-width="2.5" fill="currentColor"/>
+                </svg>
+            </div>
+            <!-- Panah 2 -> 3 -->
+            <div class="absolute top-1/4 left-2/3 -translate-x-1/2 -translate-y-1/2">
+                <svg class="w-28 h-auto drop-shadow-md" viewBox="0 0 110 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 10H100" stroke="currentColor" stroke-width="2.5"/>
+                    <path d="M95 1L109 10L95 19" stroke="currentColor" stroke-width="2.5" fill="currentColor"/>
+                </svg>
+            </div>
+            <!-- Panah 3 -> 4 (Melengkung ke Bawah) -->
+            <div class="absolute top-1/2 right-0 translate-x-[45%] -translate-y-1/2">
+                <svg class="w-20 h-24 drop-shadow-md" viewBox="0 0 60 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 1 C 50 40, 10 40, 10 89" stroke="currentColor" stroke-width="2.5"/>
+                    <path d="M15 80 L 10 89 L 1 80" stroke="currentColor" stroke-width="2.5" fill="currentColor"/>
+                </svg>
+            </div>
+            <!-- Panah 5 -> 4 -->
+            <div class="absolute top-3/4 right-1/3 translate-x-1/2 -translate-y-1/2">
+                <svg class="w-28 h-auto drop-shadow-md" viewBox="0 0 110 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M109 10H10" stroke="currentColor" stroke-width="2.5"/>
+                    <path d="M15 1L1 10L15 19" stroke="currentColor" stroke-width="2.5" fill="currentColor"/>
+                </svg>
+            </div>
+            <!-- Panah 6 -> 5 -->
+            <div class="absolute top-3/4 right-2/3 translate-x-1/2 -translate-y-1/2">
+                <svg class="w-28 h-auto drop-shadow-md" viewBox="0 0 110 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M109 10H10" stroke="currentColor" stroke-width="2.5"/>
+                    <path d="M15 1L1 10L15 19" stroke="currentColor" stroke-width="2.5" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
     </div>
   </div>
 </section>
@@ -232,12 +282,12 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start relative mt-10">
         <!-- Kolom Kiri (Galeri Foto) -->
         <div class="lg:col-span-5 lg:sticky top-24 flex flex-col gap-4">
-            <img id="main-product-img" src="https://placehold.co/600x600/115e59/ffffff?text=Foto+Utama" class="w-full aspect-square object-cover rounded-3xl shadow-lg border border-white/10">
+            <img id="main-product-img" src="./assets/images/GAMBAR_RINCIAN/RINCI1.JPG" alt="Sambal Cumi Produk Utama" class="w-full aspect-square object-cover rounded-3xl shadow-lg border border-white/10">
             <div class="grid grid-cols-4 gap-3">
-                <img src="https://placehold.co/200x200/115e59/ffffff?text=Foto+1" alt="Tampilan produk 1" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
-                <img src="https://placehold.co/200x200/0f3d3e/ffffff?text=Foto+2" alt="Tampilan produk 2" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
-                <img src="https://placehold.co/200x200/c9a876/000000?text=Foto+3" alt="Tampilan produk 3" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
-                <img src="https://placehold.co/200x200/e76f51/ffffff?text=Foto+4" alt="Tampilan produk 4" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
+                <img src="./assets/images/GAMBAR_RINCIAN/RINCI1.JPG" alt="Sambal Cumi Rincian 1" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
+                <img src="./assets/images/GAMBAR_RINCIAN/RINCI2.JPG" alt="Sambal Cumi Rincian 2" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
+                <img src="./assets/images/GAMBAR_RINCIAN/RINCI3.JPG" alt="Sambal Cumi Rincian 3" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
+                <img src="./assets/images/GAMBAR_RINCIAN/RINCI4.JPG" alt="Sambal Cumi Rincian 4" class="thumbnail-img w-full aspect-square object-cover rounded-xl cursor-pointer border-2 border-transparent hover:opacity-80 transition-all opacity-60">
             </div>
         </div>
 
@@ -376,6 +426,33 @@
   <p class="text-xs sm:text-sm">Diproduksi oleh UMKM Kampung Nelayan Pangandaran, Jawa Barat</p>
   <p class="text-xs mt-3">© 2026 — Dibuat dengan bangga di pesisir Indonesia</p>
 </footer>
+
+<!-- =========================================================
+     STORY MODAL
+========================================================== -->
+<div id="story-modal" class="hidden fixed inset-0 z-[999] flex items-center justify-center p-4 transition-opacity duration-300">
+    <!-- Backdrop -->
+    <div id="story-modal-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer"></div>
+
+    <!-- Modal Card -->
+    <div class="relative w-full max-w-lg mx-auto bg-[#054a49] border border-yellow-400 rounded-3xl shadow-2xl p-6 flex flex-col gap-4 animate-fade-up">
+        <!-- Title Capsule -->
+        <div class="bg-navy-dark/50 rounded-full py-2 px-5 self-center">
+            <h3 id="modal-title" class="font-kaftus text-xl text-yellow-400 text-center"></h3>
+        </div>
+        <!-- Image -->
+        <img id="modal-image" src="" alt="Detail Cerita" class="w-full aspect-video object-cover rounded-2xl pointer-events-none">
+        <!-- Description -->
+        <p id="modal-description" class="text-sand/90 text-base text-center leading-relaxed"></p>
+        
+        <!-- Close button -->
+        <button id="story-modal-close" aria-label="Tutup modal" class="absolute -top-3 -right-3 w-9 h-9 bg-sand text-navy rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-navy-dark focus:ring-coral">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+</div>
 
 <!-- =========================================================
      FLOATING NAVIGATION (MOBILE ONLY)
@@ -526,6 +603,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setActiveItem(locationsData[2].id); // Set active item to the third location
     markers[locationsData[2].id].openPopup(); // Open popup for the third location
+  }
+
+  // ---- Story Modal Logic ----
+  const storyModal = document.getElementById('story-modal');
+  if (storyModal) {
+    const storyDescriptions = {
+      "Tangkapan Fajar Pesisir": "Nelayan lokal memulai hari sebelum matahari terbit, mengarungi ombak untuk membawa pulang cumi-cumi segar dengan kualitas terbaik langsung dari perairan selatan.",
+      "Pemilihan Rempah Bumi": "Cabai merah segar, bawang pilihan, dan tomat dipilah dengan cermat dari hasil panen terbaik untuk memastikan perpaduan rasa pedas dan segar yang pas di lidah.",
+      "Rahasia Terasi Bakar": "Aroma khas yang menggugah selera berasal dari paduan terasi bakar istimewa. Ini adalah kunci pengikat rasa yang menyatukan gurihnya hasil laut dan pedasnya rempah.",
+      "Proses Masak Perlahan": "Setiap porsi dimasak dengan penuh kesabaran secara perlahan (slow-cooked). Proses ini memastikan bumbu meresap sempurna tanpa menghilangkan tekstur kenyal dari cumi.",
+      "Sentuhan Tangan Karangjaladri": "Lebih dari sekadar resep, sambal ini lahir dari dedikasi, kehangatan, dan keterampilan warga desa pesisir yang bekerja sama melestarikan cita rasa warisan bahari.",
+      "Kelezatan Siap Saji": "Dikemas rapat dengan standar kebersihan tinggi untuk menjaga kesegaran. Hadir sebagai lauk praktis yang siap menyempurnakan setiap suapan nasi hangat di meja makan Anda."
+    };
+
+    const modalBackdrop = document.getElementById('story-modal-backdrop');
+    const modalCloseBtn = document.getElementById('story-modal-close');
+    const modalTitleEl = document.getElementById('modal-title');
+    const modalImageEl = document.getElementById('modal-image');
+    const modalDescriptionEl = document.getElementById('modal-description');
+    const storyCards = document.querySelectorAll('.story-card');
+
+    const openModal = (card) => {
+      const titleEl = card.querySelector('h3');
+      const imageEl = card.querySelector('img');
+      if (!titleEl || !imageEl) return;
+
+      const titleText = titleEl.textContent.trim();
+      const imageUrl = imageEl.src;
+      const descriptionText = storyDescriptions[titleText];
+      if (!descriptionText) return;
+
+      modalTitleEl.textContent = titleText;
+      modalImageEl.src = imageUrl;
+      modalDescriptionEl.textContent = descriptionText;
+      
+      storyModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      storyModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    };
+
+    storyCards.forEach(card => {
+      card.addEventListener('click', () => openModal(card));
+    });
+
+    modalBackdrop.addEventListener('click', closeModal);
+    modalCloseBtn.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !storyModal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
   }
 
   // ---- Sisa script yang tidak berubah ----
